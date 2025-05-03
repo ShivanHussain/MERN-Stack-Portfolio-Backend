@@ -15,13 +15,11 @@ import projectRouter from "./routes/projectRouter.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use('*',
+app.use(
   cors({
     origin: [
               process.env.PORTFOLIO_URL,
-             process.env.DASHBOARD_URL,
-            "http://localhost:5173/",
-            "http://localhost:5173/"
+             process.env.DASHBOARD_URL
             ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -31,6 +29,7 @@ app.use('*',
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.options('*', cors());
 
 app.use(
   fileUpload({
