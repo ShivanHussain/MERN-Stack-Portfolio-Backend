@@ -129,11 +129,17 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 
 //for Get user by Id 
 export const getUser = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-  res.status(200).json({
+try{
+
+    const user = await User.findById(req.user.id);
+    res.status(200).json({
     success: true,
     user,
-  });
+    });
+
+  }catch(error){
+    console.log("gerUser error",error.message);
+  }
 });
 
 
