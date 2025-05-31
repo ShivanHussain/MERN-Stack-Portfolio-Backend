@@ -130,9 +130,6 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 //for Get user by Id 
 export const getUser = catchAsyncErrors(async (req, res, next) => {
 
-  
-  req.user = await User.findById(decoded.id);
-
 try{
 
     const user = await User.findById(req.user.id);
