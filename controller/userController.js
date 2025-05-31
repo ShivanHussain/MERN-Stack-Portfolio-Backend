@@ -131,6 +131,7 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 export const getUser = catchAsyncErrors(async (req, res, next) => {
 
   const { token } = req.cookies;
+  console.log(req.cookies);
   if (!token) {
     return next(new ErrorHandler("User not Authenticated!", 400));
   }
