@@ -130,12 +130,7 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 //for Get user by Id 
 export const getUser = catchAsyncErrors(async (req, res, next) => {
 
-  const { token } = req.cookies;
-  console.log(req.cookies);
-  if (!token) {
-    return next(new ErrorHandler("User not Authenticated!", 400));
-  }
-  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  
   req.user = await User.findById(decoded.id);
 
 try{
